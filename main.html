@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Flow Question</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      /* 🌈 3-FARBEN GRADIENT */
+background: linear-gradient(135deg,
+  #ffddd1,  /* soft blush pink */
+  #c3cfe2,  /* warm rose */
+  #c3cfe2   /* light sky blue */
+);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 16px;
+    }
+
+    .card {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .card.active {
+      display: flex;
+    }
+
+    .polaroid {
+      background: white;
+      padding: 12px 12px 20px;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+    }
+
+    .polaroid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .title {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .btn {
+      margin-top: 18px;
+      padding: 12px 22px;
+      border-radius: 50px;
+      border: none;
+      background: #111;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .icon-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      background: #111;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+      margin-top: 18px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Card 1 -->
+    <div class="card active">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/O7UMwqX.png">
+        <div class="title">Good Morning, Cute Bunny Tail! 🐰 <br>.... well ... here is the thing...</div>
+      </div>
+      <button class="btn" onclick="nextCard()">Next</button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/PtuC9Bl.png">
+        <div class="title"> Hopefully your sleep was <br>very good and peaceful! <br><br>I was totally re-thinking 🧠...and...</div>
+      </div>
+      <button class="btn" onclick="nextCard()">Next</button>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/zvKgDoY.png">
+        <div class="title"> ... that's why I am here without my coffee this morning. ☕️</div>
+      </div>
+      <button class="btn" onclick="nextCard()">Next</button>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/lRnmNPR.png">
+        <div class="title">And I guess I forgot to wear my underwear the proper way. But...</div>
+      </div>
+      <button class="btn" onclick="nextCard()">Next</button>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/NpnlYbl.png">
+        <div class="title">... I really wanted to bother you MQ,<br> and asked you a question where I hopefully can bother you as much as possible with. ✨🌈✨ ...</div>
+      </div>
+      <button class="btn" onclick="nextCard()">Next</button>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+      <div class="polaroid">
+        <img src="https://i.imgur.com/xStFxmK.png">
+        <div class="title">... Can we have a Valentines-Date tomorrow? <br><br>Where? What suits you the best.<br><br> When? Same Same. <br><br> Have a wonderful start in your day! 🩵</div>
+      </div>
+      <button class="icon-btn" onclick="restart()">↺</button>
+    </div>
+
+  </div>
+
+  <script>
+    let current = 0;
+    const cards = document.querySelectorAll('.card');
+
+    function nextCard() {
+      cards[current].classList.remove('active');
+      current = (current + 1) % cards.length;
+      cards[current].classList.add('active');
+    }
+
+    function restart() {
+      cards[current].classList.remove('active');
+      current = 0;
+      cards[current].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
